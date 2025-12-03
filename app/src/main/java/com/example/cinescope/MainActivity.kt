@@ -11,15 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cinescope.ui.theme.CineScopeTheme
+import com.example.cinescope.ui.navigation.CineNavGraph
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
-                val navController = rememberNavControllerSimple()
-                AppNavGraph(navController)
+            CineScopeTheme {
+                CineNavGraph()
             }
         }
     }
 }
+
