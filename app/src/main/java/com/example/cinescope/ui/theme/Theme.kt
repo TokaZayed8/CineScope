@@ -1,12 +1,12 @@
 package com.example.cinescope.ui.theme
 
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 
-private val DarkColors = darkColors(
+private val DarkColorScheme: ColorScheme = darkColorScheme(
     primary = PurplePrimary,
-    primaryVariant = PurpleVariant,
     secondary = Accent,
     background = BgLight,
     surface = SurfaceDark,
@@ -16,9 +16,8 @@ private val DarkColors = darkColors(
 @Composable
 fun CineScopeTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colors = DarkColors,
-        typography = Typography,
-        shapes = Shapes,
+        colorScheme = DarkColorScheme,
+        typography = androidx.compose.material3.Typography(), // defaults ok
         content = content
     )
 }

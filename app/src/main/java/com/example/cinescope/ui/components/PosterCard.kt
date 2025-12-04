@@ -2,11 +2,11 @@ package com.example.cinescope.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.IconButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.Card
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,7 +21,7 @@ fun PosterCard(
     title: String,
     onFavoriteClick: () -> Unit = {}
 ) {
-    Card(shape = RoundedCornerShape(10.dp), elevation = 8.dp, modifier = Modifier.fillMaxWidth()) {
+    Card(shape = RoundedCornerShape(10.dp), modifier = Modifier.fillMaxWidth()) {
         Column {
             AsyncImage(
                 model = imageUrl ?: "https://via.placeholder.com/600x400.png?text=Poster",
@@ -37,7 +37,7 @@ fun PosterCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(text = title, style = MaterialTheme.typography.h6)
+                    Text(text = title, style = MaterialTheme.typography.titleLarge)
                 }
                 IconButton(onClick = onFavoriteClick) {
                     Icon(Icons.Default.FavoriteBorder, contentDescription = "Favorite")

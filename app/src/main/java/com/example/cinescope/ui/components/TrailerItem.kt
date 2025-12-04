@@ -4,7 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Card
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -21,7 +21,6 @@ fun TrailerItem(thumbnailUrl: String, videoUrl: String) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl))
                 ctx.startActivity(intent)
             },
-        elevation = 6.dp
     ) {
         AsyncImage(model = thumbnailUrl, contentDescription = "trailer")
     }

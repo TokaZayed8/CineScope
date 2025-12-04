@@ -3,9 +3,9 @@ package com.example.cinescope.ui.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,8 +20,6 @@ fun MovieCard(
 ) {
     Card(
         shape = RoundedCornerShape(10.dp),
-        elevation = 6.dp,
-        backgroundColor = MaterialTheme.colors.surface,
         modifier = modifier
             .padding(6.dp)
             .width(160.dp)
@@ -35,10 +33,10 @@ fun MovieCard(
                     .height(220.dp)
                     .fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(Modifier.height(6.dp))
             Text(
                 text = title,
-                style = MaterialTheme.typography.subtitle1,
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp),
                 maxLines = 2
             )

@@ -3,16 +3,17 @@ package com.example.cinescope.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.cinescope.data.DummyData
 import com.example.cinescope.ui.components.MovieCard
 
 @Composable
-fun SearchScreen(onMovieClick: (String) -> Unit = {}) {
+fun SearchScreen(onMovieClick: (Int) -> Unit = {}) {
     var query by remember { mutableStateOf("") }
-    val all = listOf("Luca","Black Widow","Free Guy","Infinite","Movie A","Movie B")
+    val all = DummyData.movies.map { it.title }
     val results = if (query.isBlank()) emptyList<String>() else all.filter { it.contains(query, ignoreCase = true) }
 
     Column(modifier = Modifier.fillMaxSize().padding(12.dp)) {
@@ -23,9 +24,9 @@ fun SearchScreen(onMovieClick: (String) -> Unit = {}) {
         } else {
             LazyRow {
                 items(results) { title ->
-                    MovieCard(title = title, imageUrl = "https://via.placeholder.com/300x450.png?text=$title") {
-                        // fake id mapping
-                        onMovieClick("1")
+                    val movie = DummyData.movies.find { it.title == title }!!
+                    MovieCard(title = movie.title, imageUrl = movie.posterUrl) {
+                        onMovieClick(movie.id)
                     }
                 }
             }
