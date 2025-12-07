@@ -16,9 +16,15 @@ import com.example.cinescope.ui.components.RatingBar
 import com.example.cinescope.ui.components.TrailerItem
 import com.example.cinescope.ui.components.ActorItem
 
+@OptIn(ExperimentalMaterial3Api::class) 
 @Composable
 fun DetailsScreen(movieId: Int, onBack: () -> Unit = {}) {
-    val movie = DummyData.movies.find { it.id == movieId } ?: DummyData.movies.first()
+    val movie = DummyData.movies.find { it.id == movieId } ?: DummyData.movies.firstOrNull()
+
+    if (movie == null) {
+        Box(modifier = Modifier.fillMaxSize()) { Text("Movie not found") }
+        return
+    }
 
     Scaffold(topBar = {
         TopAppBar(title = { Text(movie.title) }, navigationIcon = {
@@ -47,10 +53,8 @@ fun DetailsScreen(movieId: Int, onBack: () -> Unit = {}) {
                 .horizontalScroll(rememberScrollState())
                 .fillMaxWidth()
             ) {
-                movie.trailers.ifEmpty {
-                    listOf("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-                }.forEach { vid ->
-                    // thumbnail from youtube id fallback
+                val trailers = if (movie.trailers.isEmpty()) listOf("https://www.youtube.com/watch?v=dQw4w9WgXcQ") else movie.trailers
+                trailers.forEach { vid ->
                     TrailerItem(thumbnailUrl = "https://img.youtube.com/vi/${vid.substringAfterLast("=")}/0.jpg", videoUrl = vid)
                     Spacer(modifier = Modifier.width(8.dp))
                 }
