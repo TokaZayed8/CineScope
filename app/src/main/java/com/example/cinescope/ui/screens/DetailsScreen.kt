@@ -1,4 +1,5 @@
 package com.example.cinescope.ui.screens
+
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState

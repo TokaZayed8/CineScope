@@ -9,24 +9,12 @@ import androidx.navigation.navArgument
 import com.example.cinescope.ui.screens.DetailsScreen
 import com.example.cinescope.ui.screens.FavoritesScreen
 import com.example.cinescope.ui.screens.HomeScreen
-import com.example.cinescope.ui.screens.LoginScreen
 import com.example.cinescope.ui.screens.SearchScreen
 
 @Composable
-fun CineNavGraph(startDestination: String = Routes.LOGIN) {
+fun CineNavGraph(startDestination: String = Routes.HOME) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = startDestination) {
-        composable(Routes.LOGIN) {
-            LoginScreen(
-                onLoginSuccess = {
-                    navController.navigate(Routes.HOME) {
-                        popUpTo(Routes.LOGIN) { inclusive = true }
-                    }
-                },
-                onSignUpClick = {
-                }
-            )
-        }
         composable(Routes.HOME) {
             HomeScreen(
                 onMovieClick = { id -> navController.navigate("${Routes.DETAILS}/$id") },

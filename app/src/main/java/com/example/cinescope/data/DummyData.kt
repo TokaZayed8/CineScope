@@ -1,4 +1,5 @@
 package com.example.cinescope.data
+
 import com.example.cinescope.domain.models.Actor
 import com.example.cinescope.domain.models.Movie
 
@@ -15,17 +16,17 @@ object DummyData {
         Movie(
             id = 1,
             title = "Luca",
-            posterUrl = "https://image.tmdb.org/t/p/w500/jTswp6KyDYKtvC52GbHagrZbGvD.jpg",
+            posterUrl = "https://image.tmdb.org/t/p/w500/8mKfZ0u2yJcWz5H8jLJ6Qz8bKqV.jpg",
             rating = 4.2,
             releaseDate = "2021-06-17",
             overview = "Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera...",
             images = listOf(
-                "https://image.tmdb.org/t/p/w500/jTswp6KyDYKtvC52GbHagrZbGvD.jpg"
+                "https://image.tmdb.org/t/p/w500/8mKfZ0u2yJcWz5H8jLJ6Qz8bKqV.jpg",
+                "https://image.tmdb.org/t/p/w500/another_image.jpg"
             ),
-            trailers = listOf("https://www.youtube.com/watch?v=mYfJxlgR2jw"),
+            trailers = listOf("https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
             actors = sampleActors
         ),
-
         Movie(
             id = 2,
             title = "Black Widow",

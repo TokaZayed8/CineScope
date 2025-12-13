@@ -2,8 +2,9 @@ package com.example.cinescope.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val BluePrimary = Color(0xFF1E88E5)
-val Accent = Color(0xFFFFFFFF)
-val SurfaceDark = Color(0xFF1E1E1E)
-val BgLight = Color(0xFFE3F2FD)
+val PurplePrimary = Color(0xFF6B31F0)
+val PurpleVariant = Color(0xFF5A23D9)
+val Accent = Color(0xFF7D4BFF)
+val SurfaceDark = Color(0xFF262626)
+val BgLight = Color(0xFFEFE8FF)
 val OnPrimary = Color.White
