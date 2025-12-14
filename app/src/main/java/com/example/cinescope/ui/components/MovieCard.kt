@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextOverflow
 
 @Composable
 fun MovieCard(
@@ -27,18 +29,24 @@ fun MovieCard(
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             AsyncImage(
-                model = imageUrl ?: "https://via.placeholder.com/300x450.png?text=No+Image",
+                model = imageUrl,
                 contentDescription = title,
                 modifier = Modifier
                     .height(220.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+
+                contentScale = ContentScale.Crop
             )
+
             Spacer(Modifier.height(6.dp))
+
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 6.dp),
-                maxLines = 2
+                maxLines = 2,
+
+                overflow = TextOverflow.Ellipsis
             )
         }
     }

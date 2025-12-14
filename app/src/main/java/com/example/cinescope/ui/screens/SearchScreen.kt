@@ -7,25 +7,41 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.cinescope.data.DummyData
+// import com.example.cinescope.data.DummyData
 import com.example.cinescope.ui.components.MovieCard
+import com.example.cinescope.data.MovieRepository
+import com.example.cinescope.domain.models.Movie
 
 @Composable
-fun SearchScreen(onMovieClick: (Int) -> Unit = {}) {
+fun SearchScreen(
+
+    movieRepository: MovieRepository,
+    onMovieClick: (Int) -> Unit = {}
+) {
     var query by remember { mutableStateOf("") }
-    val all = DummyData.movies.map { it.title }
-    val results = if (query.isBlank()) emptyList<String>() else all.filter { it.contains(query, ignoreCase = true) }
+    val results by movieRepository.getMoviesBySearchQuery(query).collectAsState(initial = emptyList())
+
 
     Column(modifier = Modifier.fillMaxSize().padding(12.dp)) {
-        OutlinedTextField(value = query, onValueChange = { query = it }, label = { Text("Search movies...") }, modifier = Modifier.fillMaxWidth())
+        OutlinedTextField(
+            value = query,
+            onValueChange = { query = it },
+            label = { Text("Search movies...") },
+            modifier = Modifier.fillMaxWidth()
+        )
         Spacer(modifier = Modifier.height(12.dp))
-        if (results.isEmpty()) {
+
+        if (query.isBlank()) {
             Text("Type to search", modifier = Modifier.padding(8.dp))
+        } else if (results.isEmpty()) {
+            Text("No results found for \"$query\"", modifier = Modifier.padding(8.dp))
         } else {
             LazyRow {
-                items(results) { title ->
-                    val movie = DummyData.movies.find { it.title == title }!!
-                    MovieCard(title = movie.title, imageUrl = movie.posterUrl) {
+                items(results) { movie ->
+                    MovieCard(
+                        title = movie.title,
+                        imageUrl = movie.posterUrl
+                    ) {
                         onMovieClick(movie.id)
                     }
                 }

@@ -1,23 +1,69 @@
 package com.example.cinescope.ui.theme
 
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.darkColorScheme
+import android.os.Build
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme: ColorScheme = darkColorScheme(
+
+
+private val DarkColorScheme = darkColorScheme(
     primary = BluePrimary,
-    secondary = Accent,
-    background = BgLight,
+    onPrimary = OnPrimary,
+
+
     surface = SurfaceDark,
-    onPrimary = OnPrimary
+    onSurface = OnSurfaceDark,
+    background = SurfaceDark,
+    onBackground = OnSurfaceDark,
+
+    secondary = AccentWhite,
+    onSecondary = SurfaceDark
+)
+
+private val LightColorScheme = lightColorScheme(
+    primary = BluePrimary,
+    onPrimary = OnPrimary,
+
+    background = BgLight,
+    onBackground = OnBgLight,
+    surface = BgLight,
+    onSurface = OnBgLight,
+
+    secondary = BluePrimary,
+    onSecondary = Color.White
 )
 
 @Composable
-fun CineScopeTheme(content: @Composable () -> Unit) {
+fun CineScopeTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit
+) {
+
+    val colorScheme = when {
+
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
+    }
+
     MaterialTheme(
-        colorScheme = DarkColorScheme,
-        typography = androidx.compose.material3.Typography(), // defaults ok
+        colorScheme = colorScheme,
+
+        typography = AppTypography,
         content = content
     )
 }
+
+
+private const val dynamicColor = true

@@ -9,5 +9,6 @@ data class Movie(
     val overview: String,
     val images: List<String> = emptyList(),
     val trailers: List<String> = emptyList(),
-    val actors: List<Actor> = emptyList()
+    val actors: List<Actor> = emptyList(),
+    val isFavorite: Boolean = false
 )
